@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
+import { UserService } from './user.service';
+import { AdminAuthGuard } from './admin-auth-guard.service';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -68,16 +70,16 @@ import { LoginComponent } from './login/login.component';
       {
         path: 'admin/products',
         component: AdminProductsComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, AdminAuthGuard]
       },
       {
         path: 'admin/orders',
         component: AdminOrdersComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, AdminAuthGuard]
       }
     ])
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, UserService, AdminAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
