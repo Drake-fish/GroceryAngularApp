@@ -4,16 +4,20 @@
 <p>
   <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
 </p>
-<table class="table">
+<table class="table" [mfData]="filteredProducts" #mf="mfDataTable" [mfRowsOnPage]="3">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th></th>
+      <th style="width: 33%">
+        <mfDefaultSorter by="title">Title</mfDefaultSorter>
+      </th>
+      <th style="width: 33%">
+        <mfDefaultSorter by="price">Price</mfDefaultSorter>
+      </th>
+      <th style="width: 33%"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let p of filteredProducts">
+    <tr *ngFor="let p of mf.data">
       <td (click)="log(p)">{{p.title}}</td>
       <td>{{p.price}}</td>
       <td>
@@ -21,4 +25,11 @@
       </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="4">
+        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+  </tfoot>
 </table>

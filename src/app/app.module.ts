@@ -11,6 +11,7 @@ import { AuthGuard } from './auth-guard.service';
 import { UserService } from './user.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { CustomFormsModule } from 'ng2-validation';
+import { DataTableModule } from 'angular-6-datatable';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -51,6 +52,7 @@ import { ProductService } from './product.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     FormsModule,
+    DataTableModule,
     CustomFormsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
